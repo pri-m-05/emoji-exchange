@@ -1,23 +1,69 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { Listing } from "./types";
 import { seedListings } from "./seed";
+
+const ACCENT_COLORS = [
+  { name: "Pink", pink: "#ffb6c1", purple: "#9370db" },
+  { name: "Blue", pink: "#add8e6", purple: "#6a5acd" },
+  { name: "Green", pink: "#77dd77", purple: "#4caf50" },
+  { name: "Orange", pink: "#ffcc99", purple: "#ff7043" },
+  { name: "Red", pink: "#ff8a80", purple: "#d32f2f" }
+];
 
 export default function App() {
   const [listings] = useState<Listing[]>(seedListings);
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+  const [accentIndex, setAccentIndex] = useState<number>(0);
+
+  // Apply accent colors to CSS variables
+  useEffect(() => {
+    const accent = ACCENT_COLORS[accentIndex];
+    if (accent) {
+      document.documentElement.style.setProperty("--color-accent-pink", accent.pink);
+      document.documentElement.style.setProperty("--color-accent-purple", accent.purple);
+      // Update button background gradient to new accent colors
+      document.documentElement.style.setProperty(
+        "--color-button-bg",
+        `linear-gradient(135deg, ${accent.pink}, ${accent.purple})`
+      );
+    }
+  }, [accentIndex]);
 
   const toggleView = () => {
     setViewMode((prev) => (prev === "grid" ? "list" : "grid"));
   };
 
+  const handleAccentChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setAccentIndex(Number(e.target.value));
+  };
+
   return (
     <main className="page-shell">
       <section className="panel">
-        <div className="panel-header">
+        <div className="panel-header" style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <h2>Browse Listings</h2>
-          <button className="button button-secondary" onClick={toggleView} aria-label="Toggle view">
-            {viewMode === "grid" ? "Switch to List View" : "Switch to Grid View"}
-          </button>
+          <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
+            <button className="button button-secondary" onClick={toggleView} aria-label="Toggle view">
+              {viewMode === "grid" ? "Switch to List View" : "Switch to Grid View"}
+            </button>
+            <label htmlFor="accent-select" style={{ color: "var(--color-text-primary)", fontWeight: 600 }}>
+              Accent Color:
+            </label>
+            <select
+              id="accent-select"
+              value={accentIndex}
+              onChange={handleAccentChange}
+              className="input"
+              style={{ minWidth: "140px" }}
+              aria-label="Select accent color"
+            >
+              {ACCENT_COLORS.map((color, idx) => (
+                <option key={color.name} value={idx}>
+                  {color.name}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
 
         {viewMode === "grid" ? (
