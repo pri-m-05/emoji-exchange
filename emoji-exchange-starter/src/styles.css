@@ -4,31 +4,31 @@
   --color-bg-dark: #ffffff;
   --color-bg-gradient-top: rgba(0, 150, 136, 0.22);
   --color-bg-gradient-right: rgba(3, 169, 244, 0.28);
-  --color-text-primary: #00332a;
+  --color-text-primary: #0000ff; /* blue header text */
   --color-text-secondary: #00796b;
   --color-text-muted: #004d40;
-  --color-accent-pink: #009688;
-  --color-accent-purple: #4caf50;
-  --color-accent-pink-light: rgba(0, 150, 136, 0.65);
+  --color-accent-pink: #4caf50; /* green accent */
+  --color-accent-purple: #4caf50; /* green accent */
+  --color-accent-pink-light: rgba(76, 175, 80, 0.65); /* green accent light */
   --color-panel-bg: rgba(255, 255, 255, 0.85);
-  --color-panel-border: rgba(0, 150, 136, 0.12);
+  --color-panel-border: rgba(76, 175, 80, 0.12); /* green accent border */
   --color-input-bg: rgba(255, 255, 255, 0.9);
-  --color-input-border: rgba(0, 150, 136, 0.15);
+  --color-input-border: rgba(76, 175, 80, 0.15); /* green accent border */
   --color-button-bg: linear-gradient(135deg, var(--color-accent-pink), var(--color-accent-purple));
   --color-button-disabled-opacity: 0.5;
-  --color-rarity-common-bg: rgba(0, 150, 136, 0.1);
-  --color-rarity-rare-bg: rgba(3, 169, 244, 0.25);
-  --color-rarity-rare-text: #81d4fa;
+  --color-rarity-common-bg: rgba(76, 175, 80, 0.1); /* green accent */
+  --color-rarity-rare-bg: rgba(76, 175, 80, 0.25); /* green accent */
+  --color-rarity-rare-text: #81c784; /* green accent text */
   --color-rarity-legendary-bg: rgba(76, 175, 80, 0.3);
   --color-rarity-legendary-text: #a5d6a7;
-  --color-status-ok-bg: rgba(0, 230, 118, 0.2);
+  --color-status-ok-bg: rgba(76, 175, 80, 0.2);
   --color-status-ok-text: #00c853;
-  --color-status-done-bg: rgba(3, 169, 244, 0.25);
-  --color-status-done-text: #81d4fa;
-  --color-status-declined-bg: rgba(0, 150, 136, 0.25);
-  --color-status-declined-text: #4db6ac;
+  --color-status-done-bg: rgba(76, 175, 80, 0.25);
+  --color-status-done-text: #81c784;
+  --color-status-declined-bg: rgba(76, 175, 80, 0.25);
+  --color-status-declined-text: #4caf50;
   --color-modal-bg: #e0f2f1;
-  --color-modal-border: rgba(0, 150, 136, 0.15);
+  --color-modal-border: rgba(76, 175, 80, 0.15);
   --color-modal-backdrop: rgba(255, 255, 255, 0.85);
 }
 
@@ -233,7 +233,7 @@ textarea {
 }
 
 .wanted {
-  color: #00796b;
+  color: #4caf50;
 }
 
 .button {
@@ -248,7 +248,7 @@ textarea {
 }
 
 .button:hover:not(:disabled) {
-  background: linear-gradient(135deg, #009688, #4caf50);
+  background: linear-gradient(135deg, #4caf50, #4caf50);
 }
 
 .button:disabled {
@@ -257,7 +257,7 @@ textarea {
 }
 
 .button-secondary {
-  background: rgba(0, 150, 136, 0.1);
+  background: rgba(76, 175, 80, 0.1);
   color: var(--color-text-primary);
 }
 
