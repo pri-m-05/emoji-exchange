@@ -2,13 +2,13 @@
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   /* Modern color theme variables */
   --color-bg-dark: #ffffff;
-  --color-bg-gradient-top: rgba(0, 150, 136, 0.22);
-  --color-bg-gradient-right: rgba(3, 169, 244, 0.28);
-  --color-text-primary: #0000ff; /* blue header text */
-  --color-text-secondary: #00796b;
-  --color-text-muted: #004d40;
+  --color-bg-gradient-top: rgba(76, 175, 80, 0.22); /* green accent */
+  --color-bg-gradient-right: rgba(3, 169, 244, 0.28); /* blue accent */
+  --color-text-primary: #0277bd; /* blue accent text */
+  --color-text-secondary: #2e7d32; /* green accent text */
+  --color-text-muted: #1b5e20; /* darker green muted text */
   --color-accent-pink: #4caf50; /* green accent */
-  --color-accent-purple: #4caf50; /* green accent */
+  --color-accent-purple: #0288d1; /* blue accent */
   --color-accent-pink-light: rgba(76, 175, 80, 0.65); /* green accent light */
   --color-panel-bg: rgba(255, 255, 255, 0.85);
   --color-panel-border: rgba(76, 175, 80, 0.12); /* green accent border */
@@ -27,8 +27,8 @@
   --color-status-done-text: #81c784;
   --color-status-declined-bg: rgba(76, 175, 80, 0.25);
   --color-status-declined-text: #4caf50;
-  --color-modal-bg: #e0f2f1;
-  --color-modal-border: rgba(76, 175, 80, 0.15);
+  --color-modal-bg: #e0f7fa; /* light blue modal background */
+  --color-modal-border: rgba(3, 169, 244, 0.15); /* blue accent border */
   --color-modal-backdrop: rgba(255, 255, 255, 0.85);
 }
 
@@ -43,7 +43,7 @@ body {
   background:
     radial-gradient(circle at top, var(--color-bg-gradient-top), transparent 30%),
     radial-gradient(circle at right, var(--color-bg-gradient-right), transparent 35%),
-    linear-gradient(180deg, var(--color-bg-dark) 0%, #e0f2f1 100%);
+    linear-gradient(180deg, var(--color-bg-dark) 0%, #e0f7fa 100%);
 }
 
 button,
@@ -248,7 +248,7 @@ textarea {
 }
 
 .button:hover:not(:disabled) {
-  background: linear-gradient(135deg, #4caf50, #4caf50);
+  background: linear-gradient(135deg, #4caf50, #0288d1);
 }
 
 .button:disabled {
