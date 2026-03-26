@@ -352,3 +352,43 @@ textarea {
   padding: 18px;
   color: var(--color-text-primary);
 }
+
+/* New styles for compact horizontal list view */
+.compact-list {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 12px;
+  padding: 8px 0;
+  margin-top: 16px;
+  border-top: 1px solid var(--color-panel-border);
+}
+
+.compact-list-item {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-panel-bg);
+  border: 1px solid var(--color-panel-border);
+  border-radius: 14px;
+  padding: 6px 12px;
+  min-width: 140px;
+  font-size: 14px;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+}
+
+.compact-list-item .emoji {
+  font-size: 28px;
+  line-height: 1;
+}
+
+.compact-list-item .category {
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.dark .compact-list-item {
+  background: var(--color-panel-bg);
+}

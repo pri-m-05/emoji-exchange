@@ -264,6 +264,21 @@ export default function App() {
               </article>
             ))}
           </div>
+
+          {/* New compact horizontal list view for Browse listings */}
+          <div className="compact-list">
+            {visibleListings.length === 0 ? (
+              <p className="muted">No listings found.</p>
+            ) : (
+              visibleListings.map((listing) => (
+                <div key={listing.id} className="compact-list-item">
+                  <span className="emoji">{listing.emoji}</span>
+                  <span className={rarityClass(listing.rarity)}>{listing.rarity}</span>
+                  <span className="category">{listing.category}</span>
+                </div>
+              ))
+            )}
+          </div>
         </section>
 
         <aside className="sidebar">
