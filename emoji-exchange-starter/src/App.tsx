@@ -3,11 +3,11 @@ import type { Listing } from "./types";
 import { seedListings } from "./seed";
 
 const ACCENT_COLORS = [
+  { name: "Red", pink: "#ff8a80", purple: "#d32f2f" },
+  { name: "Orange", pink: "#ffcc99", purple: "#ff7043" },
   { name: "Pink", pink: "#ffb6c1", purple: "#9370db" },
   { name: "Blue", pink: "#add8e6", purple: "#6a5acd" },
-  { name: "Green", pink: "#77dd77", purple: "#4caf50" },
-  { name: "Orange", pink: "#ffcc99", purple: "#ff7043" },
-  { name: "Red", pink: "#ff8a80", purple: "#d32f2f" }
+  { name: "Green", pink: "#77dd77", purple: "#4caf50" }
 ];
 
 export default function App() {
