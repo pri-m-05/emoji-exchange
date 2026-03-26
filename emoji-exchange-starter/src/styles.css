@@ -1,34 +1,34 @@
 :root {
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  /* Modern color theme variables */
+  /* Pastel color theme variables */
   --color-bg-dark: #ffffff;
-  --color-bg-gradient-top: rgba(76, 175, 80, 0.22); /* green accent */
-  --color-bg-gradient-right: rgba(3, 169, 244, 0.28); /* blue accent */
-  --color-text-primary: #0277bd; /* blue accent text */
-  --color-text-secondary: #2e7d32; /* green accent text */
-  --color-text-muted: #1b5e20; /* darker green muted text */
-  --color-accent-pink: #4caf50; /* green accent */
-  --color-accent-purple: #0288d1; /* blue accent */
-  --color-accent-pink-light: rgba(76, 175, 80, 0.65); /* green accent light */
+  --color-bg-gradient-top: rgba(255, 182, 193, 0.22); /* pastel pink accent */
+  --color-bg-gradient-right: rgba(173, 216, 230, 0.28); /* pastel blue accent */
+  --color-text-primary: #6a5acd; /* pastel purple text */
+  --color-text-secondary: #77dd77; /* pastel green text */
+  --color-text-muted: #a9a9a9; /* muted gray text */
+  --color-accent-pink: #ffb6c1; /* pastel pink accent */
+  --color-accent-purple: #9370db; /* pastel purple accent */
+  --color-accent-pink-light: rgba(255, 182, 193, 0.65); /* pastel pink light */
   --color-panel-bg: rgba(255, 255, 255, 0.85);
-  --color-panel-border: rgba(76, 175, 80, 0.12); /* green accent border */
+  --color-panel-border: rgba(173, 216, 230, 0.12); /* pastel blue border */
   --color-input-bg: rgba(255, 255, 255, 0.9);
-  --color-input-border: rgba(76, 175, 80, 0.15); /* green accent border */
+  --color-input-border: rgba(173, 216, 230, 0.15); /* pastel blue border */
   --color-button-bg: linear-gradient(135deg, var(--color-accent-pink), var(--color-accent-purple));
   --color-button-disabled-opacity: 0.5;
-  --color-rarity-common-bg: rgba(76, 175, 80, 0.1); /* green accent */
-  --color-rarity-rare-bg: rgba(76, 175, 80, 0.25); /* green accent */
-  --color-rarity-rare-text: #81c784; /* green accent text */
-  --color-rarity-legendary-bg: rgba(76, 175, 80, 0.3);
-  --color-rarity-legendary-text: #a5d6a7;
-  --color-status-ok-bg: rgba(76, 175, 80, 0.2);
-  --color-status-ok-text: #00c853;
-  --color-status-done-bg: rgba(76, 175, 80, 0.25);
-  --color-status-done-text: #81c784;
-  --color-status-declined-bg: rgba(76, 175, 80, 0.25);
-  --color-status-declined-text: #4caf50;
-  --color-modal-bg: #e0f7fa; /* light blue modal background */
-  --color-modal-border: rgba(3, 169, 244, 0.15); /* blue accent border */
+  --color-rarity-common-bg: rgba(173, 216, 230, 0.1); /* pastel blue */
+  --color-rarity-rare-bg: rgba(255, 182, 193, 0.25); /* pastel pink */
+  --color-rarity-rare-text: #ffb6c1; /* pastel pink text */
+  --color-rarity-legendary-bg: rgba(147, 112, 219, 0.3); /* pastel purple */
+  --color-rarity-legendary-text: #9370db; /* pastel purple text */
+  --color-status-ok-bg: rgba(119, 221, 119, 0.2); /* pastel green */
+  --color-status-ok-text: #77dd77; /* pastel green text */
+  --color-status-done-bg: rgba(173, 216, 230, 0.25); /* pastel blue */
+  --color-status-done-text: #6a5acd; /* pastel purple text */
+  --color-status-declined-bg: rgba(255, 182, 193, 0.25); /* pastel pink */
+  --color-status-declined-text: #ffb6c1; /* pastel pink text */
+  --color-modal-bg: #f8f8ff; /* very light pastel blue modal background */
+  --color-modal-border: rgba(147, 112, 219, 0.15); /* pastel purple border */
   --color-modal-backdrop: rgba(255, 255, 255, 0.85);
 }
 
@@ -43,7 +43,7 @@ body {
   background:
     radial-gradient(circle at top, var(--color-bg-gradient-top), transparent 30%),
     radial-gradient(circle at right, var(--color-bg-gradient-right), transparent 35%),
-    linear-gradient(180deg, var(--color-bg-dark) 0%, #e0f7fa 100%);
+    linear-gradient(180deg, var(--color-bg-dark) 0%, #ffffff 100%);
 }
 
 button,
@@ -233,7 +233,7 @@ textarea {
 }
 
 .wanted {
-  color: #4caf50;
+  color: var(--color-accent-pink);
 }
 
 .button {
@@ -248,7 +248,7 @@ textarea {
 }
 
 .button:hover:not(:disabled) {
-  background: linear-gradient(135deg, #4caf50, #0288d1);
+  background: linear-gradient(135deg, var(--color-accent-pink), var(--color-accent-purple));
 }
 
 .button:disabled {
@@ -257,7 +257,7 @@ textarea {
 }
 
 .button-secondary {
-  background: rgba(76, 175, 80, 0.1);
+  background: rgba(255, 182, 193, 0.1);
   color: var(--color-text-primary);
 }
 
