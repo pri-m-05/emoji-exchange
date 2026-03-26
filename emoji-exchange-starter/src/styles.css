@@ -32,6 +32,39 @@
   --color-modal-backdrop: rgba(255, 255, 255, 0.85);
 }
 
+/* Dark mode overrides */
+.dark {
+  --color-bg-dark: #121212;
+  --color-bg-gradient-top: rgba(40, 40, 40, 0.8);
+  --color-bg-gradient-right: rgba(30, 30, 30, 0.8);
+  --color-text-primary: #e0e0e0;
+  --color-text-secondary: #a0d6a0;
+  --color-text-muted: #888888;
+  --color-accent-pink: #ff8fa3;
+  --color-accent-purple: #b28fd9;
+  --color-accent-pink-light: rgba(255, 143, 163, 0.65);
+  --color-panel-bg: rgba(30, 30, 30, 0.85);
+  --color-panel-border: rgba(90, 90, 90, 0.3);
+  --color-input-bg: rgba(40, 40, 40, 0.9);
+  --color-input-border: rgba(90, 90, 90, 0.4);
+  --color-button-bg: linear-gradient(135deg, #ff8fa3, #b28fd9);
+  --color-button-disabled-opacity: 0.3;
+  --color-rarity-common-bg: rgba(90, 90, 90, 0.3);
+  --color-rarity-rare-bg: rgba(255, 143, 163, 0.3);
+  --color-rarity-rare-text: #ff8fa3;
+  --color-rarity-legendary-bg: rgba(178, 143, 217, 0.3);
+  --color-rarity-legendary-text: #b28fd9;
+  --color-status-ok-bg: rgba(160, 214, 160, 0.3);
+  --color-status-ok-text: #a0d6a0;
+  --color-status-done-bg: rgba(90, 90, 90, 0.3);
+  --color-status-done-text: #e0e0e0;
+  --color-status-declined-bg: rgba(255, 143, 163, 0.3);
+  --color-status-declined-text: #ff8fa3;
+  --color-modal-bg: #222222;
+  --color-modal-border: rgba(178, 143, 217, 0.3);
+  --color-modal-backdrop: rgba(20, 20, 20, 0.85);
+}
+
 * {
   box-sizing: border-box;
 }
@@ -206,6 +239,12 @@ textarea {
   color: var(--color-text-primary);
 }
 
+.dark .card,
+.dark .request-card,
+.dark .mini-card {
+  background: var(--color-panel-bg);
+}
+
 .card-top,
 .card-footer,
 .request-top,
@@ -220,11 +259,6 @@ textarea {
 .card h3,
 .card p {
   margin: 0;
-}
-
-.card {
-  display: grid;
-  gap: 10px;
 }
 
 .emoji {
