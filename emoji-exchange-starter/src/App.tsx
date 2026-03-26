@@ -12,7 +12,7 @@ const ACCENT_COLORS = [
 
 export default function App() {
   const [listings] = useState<Listing[]>(seedListings);
-  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+  const [viewMode, setViewMode] = useState<"grid" | "compact">("grid");
   const [accentIndex, setAccentIndex] = useState<number>(0);
 
   // Apply accent colors to CSS variables
@@ -30,7 +30,7 @@ export default function App() {
   }, [accentIndex]);
 
   const toggleView = () => {
-    setViewMode((prev) => (prev === "grid" ? "list" : "grid"));
+    setViewMode((prev) => (prev === "grid" ? "compact" : "grid"));
   };
 
   const handleAccentChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -44,7 +44,7 @@ export default function App() {
           <h2>Browse Listings</h2>
           <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
             <button className="button button-secondary" onClick={toggleView} aria-label="Toggle view">
-              {viewMode === "grid" ? "Switch to List View" : "Switch to Grid View"}
+              {viewMode === "grid" ? "Switch to Compact Table View" : "Switch to Grid View"}
             </button>
             <label htmlFor="accent-select" style={{ color: "var(--color-text-primary)", fontWeight: 600 }}>
               Accent Color:
@@ -91,8 +91,8 @@ export default function App() {
             <thead>
               <tr>
                 <th style={{ textAlign: "left", padding: "8px", borderBottom: "1px solid var(--color-panel-border)" }}>Emoji</th>
-                <th style={{ textAlign: "left", padding: "8px", borderBottom: "1px solid var(--color-panel-border)" }}>Rarity</th>
                 <th style={{ textAlign: "left", padding: "8px", borderBottom: "1px solid var(--color-panel-border)" }}>Category</th>
+                <th style={{ textAlign: "left", padding: "8px", borderBottom: "1px solid var(--color-panel-border)" }}>Rarity</th>
               </tr>
             </thead>
             <tbody>
@@ -103,6 +103,7 @@ export default function App() {
                       {listing.emoji}
                     </span>
                   </td>
+                  <td style={{ padding: "8px" }}>{listing.category}</td>
                   <td style={{ padding: "8px" }}>
                     <span
                       className={`rarity rarity-${listing.rarity.toLowerCase()}`}
@@ -111,7 +112,6 @@ export default function App() {
                       {listing.rarity}
                     </span>
                   </td>
-                  <td style={{ padding: "8px" }}>{listing.category}</td>
                 </tr>
               ))}
             </tbody>
