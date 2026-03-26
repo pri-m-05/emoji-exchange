@@ -11,17 +11,6 @@ A tiny React + TypeScript + Vite starter app for trading emoji collectibles.
 - accept or decline requests
 - localStorage persistence so the app still feels alive after refresh
 
-## Why this is a good test repo
-
-It already builds, it has enough moving pieces to be interesting, and it is simple enough that an autonomous coding agent can add features on top of it.
-
-Good follow-up agent tasks:
-- add sort by rarity
-- add dark/light theme toggle
-- add a profile page
-- add request history filters
-- add animations or toast notifications
-
 ## Run locally
 
 ```bash
