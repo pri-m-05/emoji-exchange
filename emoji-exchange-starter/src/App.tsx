@@ -91,6 +91,9 @@ export default function App() {
     return listing?.owner === currentUser;
   });
 
+  // New: all available listings for the new list view
+  const availableListings = listings.filter((listing) => listing.status === "available");
+
   function handleAddListing(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!newName.trim()) return;
@@ -264,6 +267,31 @@ export default function App() {
         </section>
 
         <aside className="sidebar">
+          <section className="panel">
+            <div className="panel-header">
+              <h2>Available trades</h2>
+              <p>All listings currently available for trade.</p>
+            </div>
+
+            <div className="request-list">
+              {availableListings.length === 0 ? (
+                <p className="muted">No available listings at the moment.</p>
+              ) : (
+                availableListings.map((listing) => (
+                  <div key={listing.id} className="mini-card">
+                    <div>
+                      <strong>
+                        {listing.emoji} {listing.name}
+                      </strong>
+                      <p className="muted">Owner: {listing.owner}</p>
+                    </div>
+                    <span className={rarityClass(listing.rarity)}>{listing.rarity}</span>
+                  </div>
+                ))
+              )}
+            </div>
+          </section>
+
           <section className="panel">
             <div className="panel-header">
               <h2>Create a listing</h2>
