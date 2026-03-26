@@ -4,21 +4,7 @@ import type { Category, ExchangeRequest, Listing, Rarity } from "./types";
 
 const LISTINGS_KEY = "emoji-exchange:listings";
 const REQUESTS_KEY = "emoji-exchange:requests";
-
-function readLocalStorage<T>(key: string, fallback: T): T {
-  const raw = localStorage.getItem(key);
-  if (!raw) return fallback;
-
-  try {
-    return JSON.parse(raw) as T;
-  } catch {
-    return fallback;
-  }
-}
-
-function rarityClass(rarity: Rarity): string {
-  return `rarity rarity-${rarity.toLowerCase()}`;
-}
+const THEME_KEY = "emoji-exchange:theme";
 
 export default function App() {
   const [currentUser, setCurrentUser] = useState(DEFAULT_USER);
@@ -38,6 +24,18 @@ export default function App() {
   const [offerEmoji, setOfferEmoji] = useState("🎧");
   const [offerMessage, setOfferMessage] = useState("");
 
+  // Dark mode state
+  const [darkMode, setDarkMode] = useState(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem(THEME_KEY);
+      if (saved === "dark") return true;
+      if (saved === "light") return false;
+      // Default to light mode
+      return false;
+    }
+    return false;
+  });
+
   useEffect(() => {
     setListings(readLocalStorage<Listing[]>(LISTINGS_KEY, seedListings));
     setRequests(readLocalStorage<ExchangeRequest[]>(REQUESTS_KEY, seedRequests));
@@ -50,6 +48,31 @@ export default function App() {
   useEffect(() => {
     localStorage.setItem(REQUESTS_KEY, JSON.stringify(requests));
   }, [requests]);
+
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem(THEME_KEY, "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem(THEME_KEY, "light");
+    }
+  }, [darkMode]);
+
+  function readLocalStorage<T>(key: string, fallback: T): T {
+    const raw = localStorage.getItem(key);
+    if (!raw) return fallback;
+
+    try {
+      return JSON.parse(raw) as T;
+    } catch {
+      return fallback;
+    }
+  }
+
+  function rarityClass(rarity: Rarity): string {
+    return `rarity rarity-${rarity.toLowerCase()}`;
+  }
 
   const visibleListings = useMemo(() => {
     return listings.filter((listing) => {
@@ -167,6 +190,15 @@ export default function App() {
           </label>
           <button className="button button-secondary" onClick={handleResetDemo}>
             Reset demo data
+          </button>
+          <button
+            className="button button-secondary"
+            onClick={() => setDarkMode((d) => !d)}
+            aria-label="Toggle dark mode"
+            title="Toggle dark mode"
+            type="button"
+          >
+            {darkMode ? "🌙 Dark" : "☀️ Light"}
           </button>
         </div>
       </header>
