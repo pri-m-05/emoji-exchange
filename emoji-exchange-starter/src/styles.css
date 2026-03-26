@@ -2,66 +2,66 @@
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   /* Pastel color theme variables */
   --color-bg-dark: #ffffff;
-  --color-bg-gradient-top: rgba(255, 182, 193, 0.22); /* pastel pink accent */
-  --color-bg-gradient-right: rgba(173, 216, 230, 0.28); /* pastel blue accent */
-  --color-text-primary: #6a5acd; /* pastel purple text */
-  --color-text-secondary: #77dd77; /* pastel green text */
+  --color-bg-gradient-top: rgba(255, 99, 71, 0.22); /* tomato red accent */
+  --color-bg-gradient-right: rgba(255, 165, 0, 0.28); /* orange accent */
+  --color-text-primary: #d32f2f; /* red text */
+  --color-text-secondary: #ff7043; /* orange text */
   --color-text-muted: #a9a9a9; /* muted gray text */
-  --color-accent-pink: #ffb6c1; /* pastel pink accent */
-  --color-accent-purple: #9370db; /* pastel purple accent */
-  --color-accent-pink-light: rgba(255, 182, 193, 0.65); /* pastel pink light */
+  --color-accent-pink: #ff8a80; /* red accent */
+  --color-accent-purple: #ff7043; /* orange accent */
+  --color-accent-pink-light: rgba(255, 138, 128, 0.65); /* red light */
   --color-panel-bg: rgba(255, 255, 255, 0.85);
-  --color-panel-border: rgba(173, 216, 230, 0.12); /* pastel blue border */
+  --color-panel-border: rgba(255, 165, 0, 0.12); /* orange border */
   --color-input-bg: rgba(255, 255, 255, 0.9);
-  --color-input-border: rgba(173, 216, 230, 0.15); /* pastel blue border */
+  --color-input-border: rgba(255, 165, 0, 0.15); /* orange border */
   --color-button-bg: linear-gradient(135deg, var(--color-accent-pink), var(--color-accent-purple));
   --color-button-disabled-opacity: 0.5;
-  --color-rarity-common-bg: rgba(173, 216, 230, 0.1); /* pastel blue */
-  --color-rarity-rare-bg: rgba(255, 182, 193, 0.25); /* pastel pink */
-  --color-rarity-rare-text: #ffb6c1; /* pastel pink text */
-  --color-rarity-legendary-bg: rgba(147, 112, 219, 0.3); /* pastel purple */
-  --color-rarity-legendary-text: #9370db; /* pastel purple text */
-  --color-status-ok-bg: rgba(119, 221, 119, 0.2); /* pastel green */
-  --color-status-ok-text: #77dd77; /* pastel green text */
-  --color-status-done-bg: rgba(173, 216, 230, 0.25); /* pastel blue */
-  --color-status-done-text: #6a5acd; /* pastel purple text */
-  --color-status-declined-bg: rgba(255, 182, 193, 0.25); /* pastel pink */
-  --color-status-declined-text: #ffb6c1; /* pastel pink text */
-  --color-modal-bg: #f8f8ff; /* very light pastel blue modal background */
-  --color-modal-border: rgba(147, 112, 219, 0.15); /* pastel purple border */
+  --color-rarity-common-bg: rgba(255, 165, 0, 0.1); /* orange */
+  --color-rarity-rare-bg: rgba(255, 138, 128, 0.25); /* red */
+  --color-rarity-rare-text: #ff8a80; /* red text */
+  --color-rarity-legendary-bg: rgba(255, 112, 67, 0.3); /* orange */
+  --color-rarity-legendary-text: #ff7043; /* orange text */
+  --color-status-ok-bg: rgba(255, 165, 0, 0.2); /* orange */
+  --color-status-ok-text: #ff7043; /* orange text */
+  --color-status-done-bg: rgba(255, 138, 128, 0.25); /* red */
+  --color-status-done-text: #d32f2f; /* red text */
+  --color-status-declined-bg: rgba(255, 138, 128, 0.25); /* red */
+  --color-status-declined-text: #ff8a80; /* red text */
+  --color-modal-bg: #fff5f5; /* very light red modal background */
+  --color-modal-border: rgba(255, 112, 67, 0.15); /* orange border */
   --color-modal-backdrop: rgba(255, 255, 255, 0.85);
 }
 
 /* Dark mode overrides */
 .dark {
   --color-bg-dark: #121212;
-  --color-bg-gradient-top: rgba(40, 40, 40, 0.8);
-  --color-bg-gradient-right: rgba(30, 30, 30, 0.8);
-  --color-text-primary: #e0e0e0;
-  --color-text-secondary: #a0d6a0;
+  --color-bg-gradient-top: rgba(139, 0, 0, 0.8); /* dark red */
+  --color-bg-gradient-right: rgba(255, 140, 0, 0.8); /* dark orange */
+  --color-text-primary: #ff8a80; /* red */
+  --color-text-secondary: #ff7043; /* orange */
   --color-text-muted: #888888;
-  --color-accent-pink: #ff8fa3;
-  --color-accent-purple: #b28fd9;
-  --color-accent-pink-light: rgba(255, 143, 163, 0.65);
+  --color-accent-pink: #ff8a80; /* red accent */
+  --color-accent-purple: #ff7043; /* orange accent */
+  --color-accent-pink-light: rgba(255, 138, 128, 0.65);
   --color-panel-bg: rgba(30, 30, 30, 0.85);
-  --color-panel-border: rgba(90, 90, 90, 0.3);
+  --color-panel-border: rgba(255, 140, 0, 0.3); /* orange border */
   --color-input-bg: rgba(40, 40, 40, 0.9);
-  --color-input-border: rgba(90, 90, 90, 0.4);
-  --color-button-bg: linear-gradient(135deg, #ff8fa3, #b28fd9);
+  --color-input-border: rgba(255, 140, 0, 0.4); /* orange border */
+  --color-button-bg: linear-gradient(135deg, #ff8a80, #ff7043);
   --color-button-disabled-opacity: 0.3;
   --color-rarity-common-bg: rgba(90, 90, 90, 0.3);
-  --color-rarity-rare-bg: rgba(255, 143, 163, 0.3);
-  --color-rarity-rare-text: #ff8fa3;
-  --color-rarity-legendary-bg: rgba(178, 143, 217, 0.3);
-  --color-rarity-legendary-text: #b28fd9;
-  --color-status-ok-bg: rgba(160, 214, 160, 0.3);
-  --color-status-ok-text: #a0d6a0;
+  --color-rarity-rare-bg: rgba(255, 138, 128, 0.3);
+  --color-rarity-rare-text: #ff8a80;
+  --color-rarity-legendary-bg: rgba(255, 112, 67, 0.3);
+  --color-rarity-legendary-text: #ff7043;
+  --color-status-ok-bg: rgba(255, 140, 0, 0.3);
+  --color-status-ok-text: #ff7043;
   --color-status-done-bg: rgba(90, 90, 90, 0.3);
-  --color-status-done-text: #e0e0e0;
-  --color-status-declined-bg: rgba(255, 143, 163, 0.3);
-  --color-status-declined-text: #ff8fa3;
-  --color-modal-bg: #222222;
-  --color-modal-border: rgba(178, 143, 217, 0.3);
+  --color-status-done-text: #ff8a80;
+  --color-status-declined-bg: rgba(255, 138, 128, 0.3);
+  --color-status-declined-text: #ff8a80;
+  --color-modal-bg: #330000;
+  --color-modal-border: rgba(255, 112, 67, 0.3);
   --color-modal-backdrop: rgba(20, 20, 20, 0.85);
 }
 
@@ -291,7 +291,7 @@ textarea {
 }
 
 .button-secondary {
-  background: rgba(255, 182, 193, 0.1);
+  background: rgba(255, 138, 128, 0.1);
   color: var(--color-text-primary);
 }
 
