@@ -62,6 +62,16 @@ export default function App() {
 
   return (
     <main className="page-shell">
+      {/* Account info moved to top-left corner with minimalistic style */}
+      <header style={{ display: "flex", justifyContent: "flex-start", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
+        <span className="emoji" aria-label="User emoji" role="img" style={{ fontSize: "28px" }}>
+          🙂
+        </span>
+        <div style={{ fontWeight: 600, color: "var(--color-text-primary)", fontSize: "16px" }}>
+          {DEFAULT_USER}
+        </div>
+      </header>
+
       <section className="panel">
         <div className="panel-header" style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <h2>Browse Listings</h2>
