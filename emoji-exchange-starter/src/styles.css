@@ -392,3 +392,14 @@ textarea {
 .dark .compact-list-item {
   background: var(--color-panel-bg);
 }
+
+/* Styles for view toggle icons with highlight circle */
+.view-icon {
+  color: var(--color-text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.view-icon.selected {
+  background-color: var(--color-accent-pink-light);
+  color: var(--color-accent-purple);
+}
