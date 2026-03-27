@@ -24,6 +24,9 @@ export default function App() {
   // State for modal visibility
   const [showInbox, setShowInbox] = useState(false);
 
+  // State for suggested emoji input
+  const [suggestedEmoji, setSuggestedEmoji] = useState("");
+
   // Apply accent colors to CSS variables
   useEffect(() => {
     const accent = ACCENT_COLORS[accentIndex];
@@ -58,6 +61,17 @@ export default function App() {
 
   const closeInbox = () => {
     setShowInbox(false);
+  };
+
+  const handleSuggestedEmojiChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSuggestedEmoji(e.target.value);
+  };
+
+  const handleSuggestEmojiSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (suggestedEmoji.trim() === "") return;
+    alert(`Thank you for suggesting the emoji: ${suggestedEmoji}`);
+    setSuggestedEmoji("");
   };
 
   return (
@@ -281,6 +295,32 @@ export default function App() {
             </tbody>
           </table>
         )}
+
+        {/* Suggest an Emoji input area at bottom */}
+        <section className="panel" style={{ marginTop: "24px" }} aria-label="Suggest an emoji">
+          <div className="panel-header">
+            <h2>Suggest an Emoji</h2>
+            <p className="muted">Have an emoji you want to see here? Suggest it below!</p>
+          </div>
+          <form onSubmit={handleSuggestEmojiSubmit} className="form">
+            <label htmlFor="suggest-emoji-input" className="label">
+              Emoji or Name
+              <input
+                id="suggest-emoji-input"
+                type="text"
+                className="input"
+                placeholder="e.g. 🐉 or Dragon"
+                value={suggestedEmoji}
+                onChange={handleSuggestedEmojiChange}
+                aria-label="Suggest an emoji or name"
+                autoComplete="off"
+              />
+            </label>
+            <button type="submit" className="button" disabled={suggestedEmoji.trim() === ""}>
+              Submit Suggestion
+            </button>
+          </form>
+        </section>
 
         {/* Inbox modal for past sent requests */}
         {showInbox && (
