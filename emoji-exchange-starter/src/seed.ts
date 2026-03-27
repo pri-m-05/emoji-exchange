@@ -16,8 +16,8 @@ export const seedListings: Listing[] = [
   },
   {
     id: "2",
-    emoji: "🍓",
-    name: "Strawberry",
+    emoji: "🍇",
+    name: "Raspberry",
     owner: "Noah",
     rarity: "Rare",
     category: "Food",
@@ -53,8 +53,8 @@ export const seedRequests: ExchangeRequest[] = [
   {
     id: "r1",
     listingId: "2",
-    listingEmoji: "🍓",
-    listingName: "Strawberry",
+    listingEmoji: "🍇",
+    listingName: "Raspberry",
     fromUser: "Priyanka",
     offeredEmoji: "🍕",
     message: "Food for food. This feels fair and iconic.",
