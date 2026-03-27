@@ -27,9 +27,6 @@ export default function App() {
   // State for suggested emoji input
   const [suggestedEmoji, setSuggestedEmoji] = useState("");
 
-  // State for rarity evaluation toggle
-  const [evaluateRarity, setEvaluateRarity] = useState(false);
-
   // State for rarity info message
   const [rarityInfo, setRarityInfo] = useState<string | null>(null);
 
@@ -72,39 +69,25 @@ export default function App() {
   const handleSuggestedEmojiChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setSuggestedEmoji(value);
-
-    if (evaluateRarity && value.trim() !== "") {
-      // Check if emoji exists in listings
-      const found = listings.find(
-        (listing) => listing.emoji === value.trim() || listing.name.toLowerCase() === value.trim().toLowerCase()
-      );
-      if (found) {
-        setRarityInfo(`This emoji is already listed with rarity: ${found.rarity}`);
-      } else {
-        setRarityInfo("This appears to be a new emoji!");
-      }
-    } else {
-      setRarityInfo(null);
-    }
+    // Clear rarity info on input change
+    setRarityInfo(null);
   };
 
-  const handleEvaluateRarityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const checked = e.target.checked;
-    setEvaluateRarity(checked);
-    // Reset rarity info when toggling
-    if (!checked) {
+  // New function to evaluate rarity on button click
+  const evaluateRarityLevel = () => {
+    const value = suggestedEmoji.trim();
+    if (value === "") {
       setRarityInfo(null);
-    } else if (suggestedEmoji.trim() !== "") {
-      // Trigger rarity check immediately if input exists
-      const value = suggestedEmoji.trim();
-      const found = listings.find(
-        (listing) => listing.emoji === value || listing.name.toLowerCase() === value.toLowerCase()
-      );
-      if (found) {
-        setRarityInfo(`This emoji is already listed with rarity: ${found.rarity}`);
-      } else {
-        setRarityInfo("This appears to be a new emoji!");
-      }
+      return;
+    }
+    // Check if emoji exists in listings
+    const found = listings.find(
+      (listing) => listing.emoji === value || listing.name.toLowerCase() === value.toLowerCase()
+    );
+    if (found) {
+      setRarityInfo(`This emoji is already listed with rarity: ${found.rarity}`);
+    } else {
+      setRarityInfo("This appears to be a new emoji!");
     }
   };
 
@@ -358,16 +341,17 @@ export default function App() {
                 autoComplete="off"
               />
             </label>
-            <label htmlFor="evaluate-rarity-checkbox" className="label" style={{ fontWeight: "normal", fontSize: "14px" }}>
-              <input
-                id="evaluate-rarity-checkbox"
-                type="checkbox"
-                checked={evaluateRarity}
-                onChange={handleEvaluateRarityChange}
-                style={{ marginRight: "8px" }}
-              />
-              Evaluate rarity before suggesting
-            </label>
+            {/* Replace checkbox with button for rarity evaluation */}
+            <button
+              type="button"
+              onClick={evaluateRarityLevel}
+              disabled={suggestedEmoji.trim() === ""}
+              className="button button-secondary"
+              style={{ marginBottom: "8px" }}
+              aria-label="Evaluate rarity"
+            >
+              Evaluate Rarity
+            </button>
             {rarityInfo && (
               <p style={{ color: "var(--color-text-secondary)", fontWeight: "600", marginTop: "4px" }}>
                 {rarityInfo}
