@@ -30,6 +30,9 @@ export default function App() {
   // State for rarity info message
   const [rarityInfo, setRarityInfo] = useState<string | null>(null);
 
+  // New state to toggle showing only owned emojis
+  const [showOwnedOnly, setShowOwnedOnly] = useState(false);
+
   // Apply accent colors to CSS variables
   useEffect(() => {
     const accent = ACCENT_COLORS[accentIndex];
@@ -98,6 +101,14 @@ export default function App() {
     setSuggestedEmoji("");
     setRarityInfo(null);
   };
+
+  // Handler to toggle showing only owned emojis
+  const toggleShowOwned = () => {
+    setShowOwnedOnly((prev) => !prev);
+  };
+
+  // Determine which listings to show based on showOwnedOnly
+  const displayedListings = showOwnedOnly ? holdings : listings;
 
   return (
     <main className="page-shell">
@@ -246,6 +257,17 @@ export default function App() {
                 </span>
               )}
             </button>
+            {/* New button to toggle owned emojis view */}
+            <button
+              className="button button-secondary"
+              onClick={toggleShowOwned}
+              aria-pressed={showOwnedOnly}
+              aria-label="Toggle view to show only owned emojis"
+              title={showOwnedOnly ? "Show all listings" : "Show only your emojis"}
+              style={{ whiteSpace: "nowrap" }}
+            >
+              {showOwnedOnly ? "Show All Listings" : "Show My Emojis"}
+            </button>
           </div>
         </div>
 
@@ -271,7 +293,7 @@ export default function App() {
 
         {viewMode === "grid" ? (
           <div className="listing-grid">
-            {listings.map((listing) => (
+            {displayedListings.map((listing) => (
               <div key={listing.id} className="card">
                 <div className="card-top">
                   <span className="emoji" aria-label={listing.name} role="img">
@@ -299,7 +321,7 @@ export default function App() {
               </tr>
             </thead>
             <tbody>
-              {listings.map((listing) => (
+              {displayedListings.map((listing) => (
                 <tr key={listing.id} style={{ borderBottom: "1px solid var(--color-panel-border)" }}>
                   <td style={{ padding: "8px" }}>
                     <span className="emoji" aria-label={listing.name} role="img">
