@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import type { Listing } from "./types";
-import { seedListings } from "./seed";
+import type { Listing, ExchangeRequest } from "./types";
+import { seedListings, seedRequests, DEFAULT_USER } from "./seed";
 
 const ACCENT_COLORS = [
   { name: "Red", pink: "#ff8a80", purple: "#d32f2f" },
@@ -14,6 +14,15 @@ export default function App() {
   const [listings] = useState<Listing[]>(seedListings);
   const [viewMode, setViewMode] = useState<"grid" | "compact">("grid");
   const [accentIndex, setAccentIndex] = useState<number>(0);
+
+  // State for emoji holdings (owned by DEFAULT_USER)
+  const [holdings, setHoldings] = useState<Listing[]>([]);
+
+  // State for exchange requests (seeded)
+  const [requests] = useState<ExchangeRequest[]>(seedRequests);
+
+  // State for modal visibility
+  const [showInbox, setShowInbox] = useState(false);
 
   // Apply accent colors to CSS variables
   useEffect(() => {
@@ -29,12 +38,26 @@ export default function App() {
     }
   }, [accentIndex]);
 
+  // Update holdings on listings change
+  useEffect(() => {
+    const owned = listings.filter((l) => l.owner === DEFAULT_USER);
+    setHoldings(owned);
+  }, [listings]);
+
   const toggleView = () => {
     setViewMode((prev) => (prev === "grid" ? "compact" : "grid"));
   };
 
   const handleAccentChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setAccentIndex(Number(e.target.value));
+  };
+
+  const openInbox = () => {
+    setShowInbox(true);
+  };
+
+  const closeInbox = () => {
+    setShowInbox(false);
   };
 
   return (
@@ -76,8 +99,74 @@ export default function App() {
                 </option>
               ))}
             </select>
+            {/* Inbox button with icon */}
+            <button
+              className="button button-secondary"
+              onClick={openInbox}
+              aria-label="Open inbox"
+              title="Inbox"
+              style={{ position: "relative" }}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path d="M22 12h-6l-2 3-2-3H2" />
+                <path d="M2 12v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-7" />
+                <path d="M16 5a4 4 0 0 1-8 0" />
+              </svg>
+              {/* Badge for pending requests count */}
+              {requests.length > 0 && (
+                <span
+                  style={{
+                    position: "absolute",
+                    top: "2px",
+                    right: "2px",
+                    backgroundColor: "var(--color-accent-pink)",
+                    color: "white",
+                    borderRadius: "50%",
+                    padding: "2px 6px",
+                    fontSize: "12px",
+                    fontWeight: "700",
+                    lineHeight: 1,
+                    userSelect: "none"
+                  }}
+                >
+                  {requests.length}
+                </span>
+              )}
+            </button>
           </div>
         </div>
+
+        {/* Emoji holdings area */}
+        <section className="panel" style={{ marginBottom: "20px" }} aria-label="Your emoji holdings">
+          <div className="panel-header">
+            <h2>Your Emoji Holdings</h2>
+            {holdings.length === 0 && <p className="muted">You currently hold no emojis.</p>}
+          </div>
+          {holdings.length > 0 && (
+            <div className="compact-list" aria-live="polite">
+              {holdings.map((emoji) => (
+                <div key={emoji.id} className="compact-list-item">
+                  <span className="emoji" aria-label={emoji.name} role="img">
+                    {emoji.emoji}
+                  </span>
+                  <span className="category">{emoji.name}</span>
+                </div>
+              ))}
+            </div>
+          )}
+        </section>
 
         {viewMode === "grid" ? (
           <div className="listing-grid">
@@ -129,6 +218,59 @@ export default function App() {
               ))}
             </tbody>
           </table>
+        )}
+
+        {/* Inbox modal for past sent requests */}
+        {showInbox && (
+          <div className="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="inbox-title">
+            <div className="modal">
+              <header style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "12px" }}>
+                <h2 id="inbox-title">Inbox - Past Sent Requests</h2>
+                <button
+                  onClick={closeInbox}
+                  aria-label="Close inbox"
+                  className="button button-secondary"
+                  style={{ fontSize: "18px", lineHeight: 1, padding: "4px 10px" }}
+                >
+                  &times;
+                </button>
+              </header>
+              {requests.length === 0 ? (
+                <p className="muted">You have no past sent requests.</p>
+              ) : (
+                <div className="request-list">
+                  {requests.map((req) => (
+                    <div key={req.id} className="request-card" style={{ marginBottom: "12px" }}>
+                      <div className="request-top" style={{ gap: "8px" }}>
+                        <span className="emoji" aria-label={req.listingName} role="img" style={{ fontSize: "32px" }}>
+                          {req.listingEmoji}
+                        </span>
+                        <div style={{ flex: 1 }}>
+                          <strong>{req.listingName}</strong> (Requested from you)
+                          <p style={{ margin: "4px 0 0", fontSize: "14px", color: "var(--color-text-muted)" }}>
+                            Offered: <span className="emoji" aria-label="Offered emoji" role="img">
+                              {req.offeredEmoji}
+                            </span>
+                          </p>
+                        </div>
+                        <span
+                          className={`status status-${req.status}`}
+                          style={{ whiteSpace: "nowrap", fontSize: "12px" }}
+                          aria-label={`Status: ${req.status}`}
+                        >
+                          {req.status.charAt(0).toUpperCase() + req.status.slice(1)}
+                        </span>
+                      </div>
+                      <p style={{ marginTop: "6px", fontStyle: "italic" }}>&quot;{req.message}&quot;</p>
+                      <p style={{ fontSize: "12px", color: "var(--color-text-muted)", marginTop: "4px" }}>
+                        Sent: {new Date(req.createdAt).toLocaleString()}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
         )}
       </section>
     </main>
