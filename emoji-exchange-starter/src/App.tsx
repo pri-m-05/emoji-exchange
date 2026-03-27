@@ -66,21 +66,73 @@ export default function App() {
         <div className="panel-header" style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <h2>Browse Listings</h2>
           <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
-            <button className="button button-secondary" onClick={toggleView} aria-label="Toggle view">
-              {viewMode === "grid" ? (
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+            <button
+              className="button button-secondary"
+              onClick={toggleView}
+              aria-label="Toggle view"
+              style={{
+                display: "flex",
+                gap: "8px",
+                padding: "6px 10px",
+                alignItems: "center",
+                borderRadius: "12px"
+              }}
+            >
+              <span
+                className={`view-icon ${viewMode === "grid" ? "selected" : ""}`}
+                aria-hidden="true"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  borderRadius: "50%",
+                  padding: "4px"
+                }}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  viewBox="0 0 24 24"
+                >
                   <rect x="3" y="3" width="7" height="7"></rect>
                   <rect x="14" y="3" width="7" height="7"></rect>
                   <rect x="14" y="14" width="7" height="7"></rect>
                   <rect x="3" y="14" width="7" height="7"></rect>
                 </svg>
-              ) : (
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+              </span>
+              <span
+                className={`view-icon ${viewMode === "compact" ? "selected" : ""}`}
+                aria-hidden="true"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  borderRadius: "50%",
+                  padding: "4px"
+                }}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  viewBox="0 0 24 24"
+                >
                   <line x1="3" y1="6" x2="21" y2="6"></line>
                   <line x1="3" y1="12" x2="21" y2="12"></line>
                   <line x1="3" y1="18" x2="21" y2="18"></line>
                 </svg>
-              )}
+              </span>
             </button>
             <label htmlFor="accent-select" style={{ color: "var(--color-text-primary)", fontWeight: 600 }}>
               Accent Color:
